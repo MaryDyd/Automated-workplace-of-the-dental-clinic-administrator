@@ -1,0 +1,26 @@
+use Dental_Clinic
+go
+---------------------------------------------------------------
+grant select, insert, delete, update on Appointment to
+Administrator
+grant select, insert, delete, update on Dentist to
+Administrator
+grant select, insert, delete, update on Patient_card to
+Administrator
+grant select, insert, delete, update on Patient_record to
+Administrator
+grant select, insert, delete, update on Treatment_procedures to
+Administrator
+----------------------------------------------------------------
+grant select on Appointment to Director
+grant select on Dentist to Director
+grant select on Patient_card to Director
+grant select on Patient_record to Director
+grant select on Treatment_procedures to Director
+-----------------------------------------------------------------
+grant select on Appointment to Dentist
+grant select on Dentist to Dentist
+grant select on Patient_card to Dentist
+grant select on Patient_record to Dentist
+grant select on Treatment_procedures to Dentist
+------------------------------------------------------------------

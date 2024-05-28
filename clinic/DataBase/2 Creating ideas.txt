@@ -1,0 +1,28 @@
+use Dental_Clinic
+go
+CREATE VIEW PatientRecord_Appointment
+AS
+SELECT P.ID_record, P.ID_patient_card, P.ID_dentist
+FROM Appointment AS A, Patient_record AS P
+WHERE A.ID_record = P.ID_record
+use Dental_Clinic
+go
+CREATE VIEW Appointment_TreatmentProcedures
+AS
+SELECT T.ID_procedure
+FROM Appointment AS A, Treatment_procedures AS T
+WHERE A.ID_procedure = T.ID_procedure
+use Dental_Clinic
+go
+CREATE VIEW PatientRecord_PatientCard
+AS
+SELECT PC.ID_patient_card
+FROM Patient_record AS PR, Patient_card AS PC
+WHERE PR.ID_patient_card = PC.ID_patient_card
+use Dental_Clinic
+go
+CREATE VIEW PatientRecord_Dentist
+AS
+SELECT D.ID_dentist
+FROM Patient_record AS PR, Dentist AS D
+WHERE PR.ID_dentist = D.ID_dentist

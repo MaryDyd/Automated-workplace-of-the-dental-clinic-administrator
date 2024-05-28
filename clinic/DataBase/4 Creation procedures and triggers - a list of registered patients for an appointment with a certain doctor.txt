@@ -1,0 +1,13 @@
+use Dental_Clinic
+if exists(select name from sys.objects where name = 'list_of_patients')
+drop procedure list_of_patients
+go
+create procedure list_of_patients
+@ID_dentist char(100)
+as
+set nocount on;
+select Patient_record.ID_patient_card as 'ID карти пацієнта',
+Dentist.Full_Name_dentist as 'ПІБ лікаря'
+from Patient_record, Dentist
+where Patient_record.ID_dentist = Dentist.ID_dentist and
+Patient_record.ID_dentist = @ID_dentist

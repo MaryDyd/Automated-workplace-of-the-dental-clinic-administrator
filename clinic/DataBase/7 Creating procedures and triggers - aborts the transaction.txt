@@ -1,0 +1,15 @@
+use Dental_Clinic
+if exists(select name from sys.objects where name = 'no_error')
+drop trigger no_error
+go
+create trigger no_error
+on Patient_record
+for insert, update
+as
+if 0 < (select count(Patient_record.Date_and_time_of_reception) from
+inserted, Patient_record
+where inserted.Date_and_time_of_reception like
+Patient_record.Date_and_time_of_reception)
+begin
+rollback tran
+end

@@ -1,0 +1,18 @@
+use Dental_Clinic
+go
+if exists(select name from sys.objects where name = 'delete_dentist')
+drop trigger delete_dentist
+go
+create trigger delete_dentist
+on Dentist
+instead of delete
+as
+begin
+delete from Patient_record
+where Patient_record.ID_dentist in (select deleted.ID_dentist from deleted)
+delete from Dentist
+where Dentist.ID_dentist in (select deleted.ID_dentist from deleted)
+end
+use Dental_Clinic
+delete from Dentist where ID_dentist = '101'
+select * from Patient_record

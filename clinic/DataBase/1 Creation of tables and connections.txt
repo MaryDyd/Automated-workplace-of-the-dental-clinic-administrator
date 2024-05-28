@@ -1,0 +1,59 @@
+create DATABASE Dental_Clinic;
+
+
+use Dental_Clinic
+IF EXISTS(Select name from sys.objects
+ WHERE name = 'Patient_card' and type_desc='USER_TABLE')
+ drop table Patient_card
+IF EXISTS(Select name from sys.objects
+ WHERE name = 'Treatment_procedures' and type_desc='USER_TABLE')
+ drop table Treatment_procedures
+IF EXISTS(Select name from sys.objects
+ WHERE name = 'Appointment' and type_desc='USER_TABLE')
+ drop table Appointment
+IF EXISTS(Select name from sys.objects
+ WHERE name = 'Dentist' and type_desc='USER_TABLE')
+ drop table Dentist
+IF EXISTS(Select name from sys.objects
+ WHERE name = 'Patient_record' and type_desc='USER_TABLE')
+ drop table Patient_record
+-------------------------------------------------
+go
+Create Table Patient_record
+(
+ID_record char(100) NOT NULL PRIMARY KEY,
+Date_and_time_of_reception datetime NULL,
+ID_dentist char(100) NOT NULL,
+ID_patient_card char(100) NOT NULL,
+)
+go
+Create Table Dentist
+(
+ID_dentist char(100) NOT NULL PRIMARY KEY,
+Full_Name_dentist varchar(100) NULL,
+Specialization_dentist varchar(30) NULL,
+Phone_number_dentist char(10) NULL,
+)
+go
+Create Table Appointment
+(
+ID_record char(100) NOT NULL PRIMARY KEY,
+ID_procedure char(100) NOT NULL,
+)
+go
+Create Table Treatment_procedures
+(
+ID_procedure char(100) NOT NULL,
+Name_procedure varchar(150) NULL,
+Cost_procedure SMALLMONEY NULL,
+)
+go
+Create Table Patient_card
+(
+ID_patient_card char(100) NOT NULL PRIMARY KEY,
+Phone_number_patient char(10) NULL,
+Full_Name_patient varchar(100) NULL,
+Date_of_birth date NULL,
+Blood_type varchar(6) NULL,
+Information_of_allergies varchar(150) NULL,
+)

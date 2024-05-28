@@ -1,0 +1,16 @@
+use Dental_Clinic
+drop user if exists Administrator
+drop user if exists Director
+drop user if exists Dentist
+go
+create login Administrator
+with password = '1337'
+create user Administrator for login Administrator
+go
+create login Director
+with password = '2508'
+create user Director for login Director
+go
+create login Dentist
+with password = '1703'
+create user Dentist for login Dentist

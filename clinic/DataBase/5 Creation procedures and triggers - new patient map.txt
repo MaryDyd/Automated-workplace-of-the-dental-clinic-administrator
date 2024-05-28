@@ -1,0 +1,28 @@
+use Dental_Clinic
+if exists(select name from sys.objects where name = 'add_patient_card')
+drop procedure add_patient_card
+go
+create procedure add_patient_card
+@ID_patient_card char(100),
+@Phone_number_patient char(10),
+@Full_Name_patient varchar(100),
+@Date_of_birth date,
+@Blood_type varchar(6),
+@Information_of_allergies varchar(150)
+as
+set nocount on;
+begin tran
+insert into Patient_card(ID_patient_card, Phone_number_patient,
+Full_Name_patient, Date_of_birth, Blood_type, Information_of_allergies)
+values
+(@ID_patient_card, @Phone_number_patient, @Full_Name_patient, @Date_of_birth,
+@Blood_type, @Information_of_allergies)
+Commit
+use Dental_Clinic
+go
+Exec add_patient_card @ID_patient_card = '007',
+@Phone_number_patient = '0930150466',
+@Full_Name_patient = 'Мосійчук Сергій Володимирович',
+@Date_of_birth = '1980-04-19',
+@Blood_type = '3-',
+@Information_of_allergies = 'NULL'
